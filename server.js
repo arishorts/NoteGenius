@@ -47,6 +47,9 @@ app.listen(port, () => {
   } else if (os.type() === "Windows_NT") {
     // Check if the OS is Windows
     exec(`start http://localhost:${port}`);
+  } else if (os.type() === "Linux") {
+    // Linux
+    exec(`xdg-open http://localhost:${port}`);
   } else {
     console.log("Unsupported OS detected");
   }
