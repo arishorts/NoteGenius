@@ -32,15 +32,15 @@ notesRouter.post("/", (req, res) => {
   }
 
   // Destructuring assignment for the items in req.body
-  const { name, info } = req.body;
+  const { title, text } = req.body;
 
   // If all the required properties are present
-  if (name && info) {
+  if (title && text) {
     // Variable for the object we will save
     const newNotes = {
       id: uuid(),
-      name,
-      info,
+      title,
+      text,
     };
 
     readAndAppend(newNotes, "./db/notes.json");
@@ -61,14 +61,16 @@ notesRouter.put("/:id", (req, res) => {
     const data = JSON.parse(response);
     const note = data.find((note) => note.id === req.params.id);
     const index = data.findIndex((note) => note.id === req.params.id);
+
+    //validation
     // if (!note)
     //   return res.status(404).send("the note with the given ID was not found");
+    // const { error } = validateNote(req.body);
+    // if (error) return res.status(400).send(error.details[0].message);
 
-    //const { error } = validateNote(req.body);
-    //if (error) return res.status(400).send(error.details[0].message);
-    const { name, info } = req.body;
-    note.name = name;
-    note.info = info;
+    const { title, text } = req.body;
+    note.title = title;
+    note.text = text;
     let updatedNotes = [...data];
     updatedNotes[index] = note;
     writeToFile("./db/notes.json", updatedNotes);
@@ -81,27 +83,19 @@ notesRouter.delete("/:id", (req, res) => {
     const data = JSON.parse(response);
     const note = data.find((note) => note.id === req.params.id);
     const index = data.findIndex((note) => note.id === req.params.id);
-    //const index = notes.indexOf(note); DOES THIS WORK?
-
-    // if (!note)
-    //   return res.status(404).send("the note with the given ID was not found");
-
-    //const { error } = validateNote(req.body);
-    //if (error) return res.status(400).send(error.details[0].message);
-
-    // let updatedNotes = [...data];
-    // updatedNotes.splice(index, 1);
-    const updatedNotes = data.filter((note) => note.id !== req.params.id);
+    let updatedNotes = [...data];
+    updatedNotes.splice(index, 1);
+    //const updatedNotes = data.filter((note) => note.id !== req.params.id);
     writeToFile("./db/notes.json", updatedNotes);
     res.send(note);
   });
 });
 
-// function validateNote(note) {
-//   const schema = Joi.object({
-//     name: Joi.string().min(3).required(),
-//   });
-//   return schema.validate(note);
-// }
+function validateNote(note) {
+  const schema = Joi.object({
+    title: Joi.string().min(3).required(),
+  });
+  return schema.validate(note);
+}
 
 module.exports = notesRouter;

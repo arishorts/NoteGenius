@@ -38,23 +38,7 @@ app.get("/notes", (req, res) =>
 
 //listening on port ______
 const port = process.env.PORT || 3000;
-// app.listen(port, () =>
-//   console.log(`App listening at http://localhost:${port} 🚀`)
-// );
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port} 🚀`);
-
-  if (os.type() === "Darwin") {
-    // Check if the OS is macOS
-    exec(`open http://localhost:${port}`);
-  } else if (os.type() === "Windows_NT") {
-    // Check if the OS is Windows
-    exec(`start http://localhost:${port}`);
-  } else if (os.type() === "Linux") {
-    // Linux
-    exec(`xdg-open http://localhost:${port}`);
-  } else {
-    console.log("Unsupported OS detected");
-  }
 });
