@@ -45,7 +45,8 @@ SO THAT I can organize my thoughts and keep track of tasks I need to complete
 
 ![badmath](./public/assets/Images/screenshot.JPG)
 
-&nbsp; The website can be found at: https://github.com/arishorts/expressNoteTaker
+&nbsp; The repo can be found at: https://github.com/arishorts/expressNoteTaker <br>
+&nbsp; The website can be found at: https://arishorts-express-note-taker.herokuapp.com/notes
 
 ## Tests:
 
