@@ -2,7 +2,7 @@
 
 ## Description:
 
-this application, the backend is using the Express framework for Node.js, and the frontend is using vanilla JavaScript to interact with the server via RESTful APIs. The Note Taker application allows users to create, save, and view notes. Overall, the Note Taker application provides users with a simple and intuitive way to take and organize notes.
+The front end of this application is built using bootstrap-esque css and javascript. The backend is using the Express framework for Node.js, and the frontend is using vanilla JavaScript to interact with the server via RESTful APIs. The Note Taker application allows users to create, save, and view notes. Overall, the Note Taker application provides users with a simple and intuitive way to take and organize notes.
 
 ## Skills Used
 
